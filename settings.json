@@ -9,6 +9,12 @@
 //
 // Local installs: [https://ollama.com/, https://claude.com/download]
 {
+  // Autosave
+  "autosave": { "after_delay": { "milliseconds": 500 } },
+  "colorize_brackets": true,
+  // "show_whitespaces": "boundary",  // turns on left justification whitespace
+  "wrap_guides": [80, 120],
+
   "diagnostics": {
     // Only show inline diagnostics for errors
     "inline": {
@@ -16,9 +22,6 @@
       "max_severity": "error",
     },
   },
-
-  // Autosave
-  "autosave": { "after_delay": { "milliseconds": 500 } },
 
   // Editor: inlay hints
   "inlay_hints": {
@@ -33,6 +36,7 @@
   "languages": {
     "Python": {
       "wrap_guides": [79],
+      "language_servers": ["!basedpyright", "ty", "ruff"], // Astral stack ftw
     },
     "Java": {
       // Java moment
@@ -99,6 +103,14 @@
           "tool_override": "some-model-that-supports-toolcalling",
         },
       ],
+    },
+  },
+
+  "agent": {
+    "default_profile": "ask",
+    "default_model": {
+      "provider": "zed.dev",
+      "model": "gemini-3-pro-preview",
     },
   },
 }
