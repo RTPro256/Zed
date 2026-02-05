@@ -122,13 +122,13 @@
                 "enabled": true,
               },
               "saveActions": {
-                "organizeImports": false,
+                "organizeImports": true,
               },
               "contentProvider": {
                 "preferred": null,
               },
               "autobuild": {
-                "enabled": false,
+                "enabled": true,
               },
               "completion": {
                 "favoriteStaticMembers": [
@@ -148,9 +148,8 @@
           // What is the difference home vs java_home? Reference: https://github.com/zed-extensions/java
           "home": "%APPDATA%\\.jdk\\jdk-25.0.1.8-hotspot",
           "java_home": "%APPDATA%\\.jdk\\jdk-25.0.1.8-hotspot",
-
           "lombok_support": true,
-          "jdk_auto_download": false,
+          "jdk_auto_download": true,
 
           // Controls when to check for updates for JDTLS, Lombok, and Debugger
           // - "always" (default): Always check for and download the latest version
@@ -163,10 +162,13 @@
 
           // Use custom installations instead of managed downloads
           // When these are set, the extension will not download or manage these components
+          //
           // [(https://download.eclipse.org/jdtls/milestones/?d), (https://download.eclipse.org/jdtls/snapshots/?d)]
-          // "jdtls_launcher": "%APPDATA%\\.jdk\\jdt-language-server-1.9.0-202203031534", // Milestone
-          "jdtls_launcher": "%APPDATA%\\.jdk\\jdt-language-server-1.57.0-202602031454", // Snapshot
-          // "lombok_jar": "/path/to/your/lombok.jar",
+          // ERROR: Language server java: initializing server java, id 12: Server reset the connection -- stderr -- The system cannot find the path specified.
+          "jdtls_launcher": "%APPDATA%\\.jdk\\jdt-language-server-1.9.0-202203031534\\bin", // Milestone
+          // "jdtls_launcher": "%APPDATA%\\.jdk\\jdt-language-server-1.57.0-202602031454", // Snapshot
+
+          "lombok_jar": "%APPDATA%\\Documents\\code\\mastodon_4j\\tools\\lombok-1.18.42.jar",
           // "java_debug_jar": "/path/to/your/com.microsoft.java.debug.plugin.jar",
         },
       },
