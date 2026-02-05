@@ -35,8 +35,24 @@
   // Language-specific settings
   "languages": {
     "Python": {
+      "format_on_save": "off",
       "wrap_guides": [79],
-      "language_servers": ["!basedpyright", "ty", "ruff"], // Astral stack ftw
+      "language_servers": [
+        // Disable basedpyright and enable ty, and otherwise
+        // use the default configuration.
+        "!basedpyright",
+        "ty",
+        "ruff",
+        "pyright",
+        "python-lsp-server",
+      ], // Astral stack ftw
+      // Or use `"formatter": null` to disable formatting entirely.
+      "formatter": {
+        "external": {
+          "command": "black",
+          "arguments": ["--stdin-filename", "{buffer_path}", "-"],
+        },
+      },
     },
     "Java": {
       // Java moment
@@ -49,6 +65,10 @@
     "basedpyright": {
       "settings": {
         "basedpyright.analysis": {
+          "diagnosticMode": "workspace",
+          "inlayHints": {
+            "callArgumentNames": false,
+          },
           "diagnosticSeverityOverrides": {
             // I like implicit string concatenation when formatting long strings
             "reportImplicitStringConcatenation": "none",
