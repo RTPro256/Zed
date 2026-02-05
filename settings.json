@@ -1,0 +1,104 @@
+// Folder-specific settings
+//
+// For a full list of overridable settings, and general information on folder-specific settings,
+// see the documentation: https://zed.dev/docs/configuring-zed#settings-files
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+//
+// Local installs: [https://ollama.com/, https://claude.com/download]
+{
+  "diagnostics": {
+    // Only show inline diagnostics for errors
+    "inline": {
+      "enabled": true,
+      "max_severity": "error",
+    },
+  },
+
+  // Autosave
+  "autosave": { "after_delay": { "milliseconds": 500 } },
+
+  // Editor: inlay hints
+  "inlay_hints": {
+    // Show on Ctrl+Alt
+    "toggle_on_modifiers_press": {
+      "control": true,
+      "alt": true,
+    },
+  },
+
+  // Language-specific settings
+  "languages": {
+    "Python": {
+      "wrap_guides": [79],
+    },
+    "Java": {
+      // Java moment
+      "wrap_guides": [120],
+    },
+  },
+
+  // Language server settings
+  "lsp": {
+    "basedpyright": {
+      "settings": {
+        "basedpyright.analysis": {
+          "diagnosticSeverityOverrides": {
+            // I like implicit string concatenation when formatting long strings
+            "reportImplicitStringConcatenation": "none",
+          },
+        },
+      },
+    },
+    "jdtls": {
+      "settings": {
+        "java": {
+          "home": "C:\\Users\\RyanT\\.jdk\\jdk-25.0.1.8-hotspot",
+        },
+      },
+    },
+    // Error - "nil" : Property nil is not allowed.
+    // "nil": {
+    //   "initialization_options": {
+    //     "formatting": {
+    //       "command": ["nixfmt"],
+    //     },
+    //   },
+    // },
+  },
+
+  "language_models": {
+    "ollama": {
+      "api_url": "http://localhost:11434",
+      "auto_discover": true,
+      "available_models": [
+        {
+          "name": "qwen3-coder",
+          "display_name": "qwen 3 coder",
+          "max_tokens": 262144,
+          "supports_tools": true,
+          "supports_thinking": true,
+          "supports_images": true,
+        },
+      ],
+    },
+    "anthropic": {
+      "available_models": [
+        {
+          "name": "claude-sonnet-4-5-20250929",
+          "display_name": "Sonnet 4.5",
+          "max_tokens": 128000,
+          "max_output_tokens": 2560,
+          "cache_configuration": {
+            "max_cache_anchors": 10,
+            "min_total_token": 10000,
+            "should_speculate": false,
+          },
+          "tool_override": "some-model-that-supports-toolcalling",
+        },
+      ],
+    },
+  },
+}
