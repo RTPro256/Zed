@@ -58,8 +58,96 @@
     },
     "jdtls": {
       "settings": {
+        "initialization_options": {
+          "bundles": [],
+          // use this if your zed project root folder is not the same as the java project root:
+          // "workspaceFolders": ["file:///home/snjeza/Project"],
+          "settings": {
+            "java": {
+              "home": "%APPDATA%\\.jdk\\jdk-25.0.1.8-hotspot",
+              "errors": {
+                "incompleteClasspath": {
+                  "severity": "warning",
+                },
+              },
+              "configuration": {
+                "updateBuildConfiguration": "interactive",
+                "maven": {
+                  "userSettings": null,
+                },
+              },
+              "import": {
+                "gradle": {
+                  "enabled": false,
+                },
+                "maven": {
+                  "enabled": true,
+                },
+                "exclusions": [
+                  "**/node_modules/**",
+                  "**/.metadata/**",
+                  "**/archetype-resources/**",
+                  "**/META-INF/maven/**",
+                  "/**/test/**",
+                ],
+              },
+              "referencesCodeLens": {
+                "enabled": false,
+              },
+              "signatureHelp": {
+                "enabled": false,
+              },
+              "implementationCodeLens": "all",
+              "format": {
+                "enabled": true,
+              },
+              "saveActions": {
+                "organizeImports": false,
+              },
+              "contentProvider": {
+                "preferred": null,
+              },
+              "autobuild": {
+                "enabled": false,
+              },
+              "completion": {
+                "favoriteStaticMembers": [
+                  "org.junit.Assert.*",
+                  "org.junit.Assume.*",
+                  "org.junit.jupiter.api.Assertions.*",
+                  "org.junit.jupiter.api.Assumptions.*",
+                  "org.junit.jupiter.api.DynamicContainer.*",
+                  "org.junit.jupiter.api.DynamicTest.*",
+                ],
+                "importOrder": ["java", "javax", "com", "org"],
+              },
+            },
+          },
+        },
         "java": {
-          "home": "C:\\Users\\RyanT\\.jdk\\jdk-25.0.1.8-hotspot",
+          // What is the difference home vs java_home? Reference: https://github.com/zed-extensions/java
+          "home": "%APPDATA%\\.jdk\\jdk-25.0.1.8-hotspot",
+          "java_home": "%APPDATA%\\.jdk\\jdk-25.0.1.8-hotspot",
+
+          "lombok_support": true,
+          "jdk_auto_download": false,
+
+          // Controls when to check for updates for JDTLS, Lombok, and Debugger
+          // - "always" (default): Always check for and download the latest version
+          // - "once": Check for updates only if no local installation exists
+          // - "never": Never check for updates, only use existing local installations (errors if missing)
+          //
+          // Note: Invalid values will default to "always"
+          // If custom paths (below) are provided, check_updates is IGNORED for that component
+          "check_updates": "always",
+
+          // Use custom installations instead of managed downloads
+          // When these are set, the extension will not download or manage these components
+          // [(https://download.eclipse.org/jdtls/milestones/?d), (https://download.eclipse.org/jdtls/snapshots/?d)]
+          // "jdtls_launcher": "%APPDATA%\\.jdk\\jdt-language-server-1.9.0-202203031534", // Milestone
+          "jdtls_launcher": "%APPDATA%\\.jdk\\jdt-language-server-1.57.0-202602031454", // Snapshot
+          // "lombok_jar": "/path/to/your/lombok.jar",
+          // "java_debug_jar": "/path/to/your/com.microsoft.java.debug.plugin.jar",
         },
       },
     },
@@ -79,6 +167,7 @@
       "auto_discover": true,
       "available_models": [
         {
+          // Configure specific model settings.
           "name": "qwen3-coder",
           "display_name": "qwen 3 coder",
           "max_tokens": 262144,
@@ -107,10 +196,30 @@
   },
 
   "agent": {
-    "default_profile": "ask",
+    "always_allow_tool_actions": true,
+    "single_file_review": true,
+
     "default_model": {
       "provider": "zed.dev",
-      "model": "gemini-3-pro-preview",
+      "model": "claude-sonnet-4",
+    },
+    "inline_assistant_model": {
+      "provider": "anthropic",
+      "model": "claude-sonnet-4",
+    },
+    "inline_alternatives": [
+      {
+        "provider": "zed.dev",
+        "model": "gpt-4-mini",
+      },
+      {
+        "provider": "zed.dev",
+        "model": "gemini-2.5-flash",
+      },
+    ],
+    "commit_message_model": {
+      "provider": "openai",
+      "model": "gpt-4o-mini",
     },
   },
 }
